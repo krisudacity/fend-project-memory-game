@@ -1,8 +1,4 @@
-/*
- * TO-DO: ADD MEDIA QUERIES
- */
-
- html {
+html {
      box-sizing: border-box;
  }
 
@@ -22,7 +18,7 @@
 
  body {
      background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-     font-family: 'Coda', cursive;
+     font-family: 'arial';
  }
 
  .container {
@@ -38,9 +34,8 @@
  }
 
  /*
-  * Styles for the deck of cards
+  * CARD DECK
   */
-
  .deck {
      width: 660px;
      min-height: 680px;
@@ -90,9 +85,8 @@
  }
 
  /*
-  * Styles for the Timer
+  * TIMER
   */
-
  .timer {
    background-color: #20d8cd;
    margin: 1em;
@@ -101,9 +95,8 @@
  }
 
  /*
-  * Styles for Restart Button
+  * RESTART BUTTON
   */
-
  .restart {
    background-color: #20d8cd;
    padding: 1px 10px 1px 10px;
@@ -111,9 +104,8 @@
  }
 
  /*
-  * Styles for the Score Panel
+  * SCORE PANEL
   */
-
  .score-panel {
      text-align: left;
      width: 345px;
@@ -136,3 +128,76 @@
      float: right;
      cursor: pointer;
  }
+
+ /*
+  * MODAL
+  */
+.modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-body {
+    position: relative;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    padding: 1rem;
+    background: #fff;
+    transform: translate(-50%, -70%);
+}
+
+.modal-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.modal-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.modal-btns {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+.modal-btn {
+    width: 70px;
+    height: 35px;
+}
+
+/*
+ * Hide Modal
+ */
+.hide {
+  display: none;
+}
+
+/*
+ * CLOSE MODAL
+ */
+.modal-close {
+    color: #aaa;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
