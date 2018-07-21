@@ -2,9 +2,16 @@
 
 ## Table of Contents
 
+* [Installation](#installation)
 * [Gameplay](#gameplay)
 * [Instructions](#instructions)
-* [Commit History](#commits)
+* [Built With](#built-with)
+* [Acknowledgments](#acknowledgments)
+* [Remaining Bugs](#remaining-bugs)
+
+## Installation
+
+Download and open index.html with a browser.
 
 ## Gameplay
 
@@ -18,14 +25,22 @@ The game board consists of sixteen "cards" arranged in a grid. The deck is made 
 * If the cards do not match, both cards are flipped face down.
 * The game is won once all cards have been correctly matched.
 
-## Commits 
+## Built With
 
-**Second commit (6/10):**
-- Added clickable cards, click functionality, matching logic and restart button
+* HTML
+* CSS
+* Javascript
 
-**Third commit (6/24):**
-- Fixed the Restart Button so that the number of moves resets with a new game
-- Added rating functionality
-- Added shuffle function
-- Decreased the timeout limit
-- Added the timer  
+## Acknowledgments
+
+* [Yahya Elharony's Study Jam](https://www.youtube.com/watch?v=G8J13lmApkQ)
+* [Matthew Cranford's Tutorial](https://matthewcranford.com/category/blog-posts/walkthrough/memory-game/)
+* [Sandra Israel-Ovirih](https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript)
+
+## Remaining Bugs
+
+* Replay button on modal
+* Match > Pop Up Modal > Hit Cancel > Hit Restart Button
+* Timer starts on 2nd move
+* Stars don't reset with game reset
+* (Help?) 

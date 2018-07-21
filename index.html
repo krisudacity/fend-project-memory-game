@@ -2,22 +2,32 @@
 <html lang="en">
 
 <head>
-   <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Matching Game</title>
   <meta name="description" content="">
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
   <link rel="stylesheet" href="css/app.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 </head>
+
 <body>
-  <div class="modal-bg">
-    <div class="modal-body"></div>
-    <div class="modal-heading">
-      <h1 class="modal-title">Rating</h1>
-      <span class="modal-close">x</span>
+  <div class="modal-bg hide">
+    <div class="modal-body">
+      <div class="modal-heading">
+        <h1 class="modal-title">Congratulations! 🎉</h1>
+        <span class="modal-close">x</span>
+      </div>
+      <div class="modal-rating">
+        <p>Total moves: <span id=finalMove> </span></p>
+        <p>Total time: <span id=totalTime> </span></p>
+        <p>Rating: <span id=starRating></span></p>
+      </div>
+      <div class="modal-btns">
+        <button class="modal-btn modal-cancel">Cancel</button>
+        <button class="modal-btn modal-replay">Replay</button>
+      </div>
     </div>
   </div>
   <span class="container">
@@ -33,7 +43,7 @@
         	</ul>
 
         	<span class="moves"></span> Moves
-          <span class="timer"></span>
+  <span class="timer"></span>
 
   <div class="restart">
     <i class="fa fa-repeat"></i>
@@ -45,4 +55,5 @@
   </div>
   <script src="js/app.js"></script>
 </body>
+
 </html>
