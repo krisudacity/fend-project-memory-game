@@ -111,7 +111,7 @@ function compare(presentCard, pastCard) {
     matchedCards.push(presentCard, pastCard);
 
     flippedCards = []; // resets
-    if (matchedCards.length == 2) { // checks if game is over: if using 2, coder is testing
+    if (matchedCards.length == 16) { // checks if game is over
       gameOver();
       resetTimer();
     }
