@@ -1,48 +1,31 @@
 // References for tutorials:
 // Yahya Elharony's Study Jam - https://www.youtube.com/watch?v=G8J13lmApkQ
 // Matthew Cranford's Tutorial - https://matthewcranford.com/category/blog-posts/walkthrough/memory-game/
-// Sandra Israel-Ovirih - https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript
+// Sandra Israel-Ovirih's Tutorial - https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript
 
-// create an array to hold the cards in the deck:
-const myArray = [
-  "fa fa-diamond",
-  "fa fa-diamond",
-  "fa fa-paper-plane-o",
-  "fa fa-paper-plane-o",
-  "fa fa-anchor",
-  "fa fa-anchor",
-  "fa fa-bolt",
-  "fa fa-bolt",
-  "fa fa-cube",
-  "fa fa-cube",
-  "fa fa-leaf",
-  "fa fa-leaf",
-  "fa fa-bicycle",
-  "fa fa-bicycle",
-  "fa fa-bomb",
-  "fa fa-bomb"
-];
+const symbols = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb"];
+const cards = symbols.concat(symbols); //concatenate values to symbols array
 
-// create a container for the cards
+//create a container for the cards
 const cardsDeck = document.querySelector(".deck");
 
-// create variables for flipped cards and matching cards
+//create variables for flipped cards and matching cards
 let flippedCards = [];
 let matchedCards = [];
 
-// shuffle function
+//shuffle function
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue,
     randomIndex;
 
-  // while there remain elements to shuffle...
+  //while there remain elements to shuffle...
   while (0 !== currentIndex) {
-    // pick a remaining element...
+    //pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
 
-    // and swap it with the current element.
+    //and swap it with the current element.
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
@@ -55,19 +38,19 @@ function shuffle(array) {
  * Initialize Game
  */
 
-// after removing li elements from index.html, reinsert the code with dynamic javascript to: loop over the array, create the li element and assign it the variable "card", create the list that was previously in the deck and assign each li element the class "card", nest each of the 16 array properties inside each li element as classes and pass the card as an argument to the deck
+//after removing li elements from index.html, reinsert the code with dynamic javascript to: loop over the array, create the li element and assign it the variable "card", create the list that was previously in the deck and assign each li element the class "card", nest each of the 16 array properties inside each li element as classes and pass the card as an argument to the deck
 function init() {
-  shuffle(myArray);
-  for (let i = 0; i < myArray.length; i++) {
+  shuffle(cards);
+  for (let i = 0; i < cards.length; i++) {
     const card = document.createElement("li");
     card.classList.add("card");
-    card.innerHTML = `<c class="${myArray[i]}"></c>`;
+    card.innerHTML = `<c class="${cards[i]}"></c>`;
     cardsDeck.appendChild(card);
 
-    // add click event to each card
+    //add click event to each card
     click(card);
 
-    // reset the timer
+    //reset the timer
     var timer = document.querySelector(".timer");
     timer.innerHTML = "0 mins 0 secs";
     clearInterval(interval);
@@ -78,8 +61,7 @@ function init() {
  * Click Event
  */
 
-function click(card) {
-  // event listener for card clicks
+function click(card) { // event listener for card clicks
   // 1. using the app.css file as a guide, create the function that will show correct conditions when clicked
   // 2. create if else function to compare flipped card to blank card
   card.addEventListener("click", function() {
@@ -99,7 +81,7 @@ function click(card) {
 }
 
 /*
- * Match the cards
+ * Compare Cards
  */
 
 function compare(presentCard, pastCard) {
@@ -110,8 +92,8 @@ function compare(presentCard, pastCard) {
 
     matchedCards.push(presentCard, pastCard);
 
-    flippedCards = []; // resets
-    if (matchedCards.length == 16) { // checks if game is over
+    flippedCards = []; //resets
+    if (matchedCards.length == 16) { //checks if game is over: if using 2, coder is testing
       gameOver();
       resetTimer();
     }
@@ -154,19 +136,19 @@ function startTimer() {
 /*
  * Add Move
  */
-let moves = 0;
+let moves = 1;
 const movesContainer = document.querySelector(".moves");
 movesContainer.innerHTML = 0;
 function addMove() {
-  moves++;
   movesContainer.innerHTML = moves;
-  if (moves == 1) {
+  moves++;
+  if (moves == 2) {
     second = 0;
     minute = 0;
     hour = 0;
     startTimer();
   }
-  // Set the rating
+  //set the star rating
   starsRating();
 }
 
@@ -177,47 +159,41 @@ function addMove() {
 const starsContainer = document.querySelector(".stars");
 function starsRating() {
   switch (moves) {
-    case 10:
+    case 5:
       starsContainer.innerHTML = `<i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>`;
+        		<li><i class="fa fa-star"></i></li> <i class="fa fa-star"></i></li>`;
       break;
 
-    case 20:
+    case 15:
+      starsContainer.innerHTML = `<li><i class="fa fa-star"></i> </li> <i class="fa fa-star"></i></li>`;
+      break;
+
+    case 30:
       starsContainer.innerHTML = `<li><i class="fa fa-star"></i></li>`;
       break;
   }
 }
 
-//counts number stars
-function getStars() {
-  const stars = document.querySelectorAll('.stars li');
-  let starCount = 0;
-  for (var star of stars) {
-      if (star.style.display !== 'none') {
-        starCount++;
-      }
-  }
-  return starCount;
-}
-
 /*
- * Refresh Game Button
+ * Restart Game Button
  */
 
 const refresh = document.querySelector(".restart");
 refresh.addEventListener("click", function() {
-  cardsDeck.innerHTML = ""; // deletes deck
-  init(); // call `init` to create new deck
+  cardsDeck.innerHTML = ""; //deletes deck
+  init(); //create new deck
 
   // resets related variables
+  flippedCards = [];
   matchedCards = [];
   moves = 0;
   movesContainer.innerHTML = moves;
+  location.reload();
 });
 
 /*
  *  If all cards have matched, display a message with the final score.
- */
+*/
 
 function toggleModal() {
   const modal = document.querySelector(".modal-bg");
@@ -233,8 +209,7 @@ function resetTimer() {
 function writeModalStats() {
   // let timeStat = document.querySelector('.totalTime');
   let finalTime = document.querySelector('.timer').innerHTML;
-  // let starsStat = document.querySelector('.starRating');
-  const stars = getStars();
+  let stars = $(".fa-star").length
   let movesStat = document.querySelector('.finalMove');
   // let moves = 0;
 
@@ -249,31 +224,44 @@ function gameOver() {
 }
 
 /*
- * Initialize modal buttons and restart button
- *
+ * Modal: Replay Button
  */
-document.querySelector('.modal-cancel').addEventListener("click", () => {
+
+const replay = document.querySelector(".modal__replay");
+replay.addEventListener("click", function() {
+  cardsDeck.innerHTML = ""; //delete deck
+  init(); //create new deck
   toggleModal();
 
-document.querySelector('.modal-replay').addEventListener("click", replayGame);
+  // resets related variables
+  flippedCards = [];
+  matchedCards = [];
+  moves = 0;
+  movesContainer.innerHTML = moves;
+  location.reload();
+});
+
+
+/*
+Initialize modal buttons and restart button
+ *
+ */
+document.querySelector('.modal__cancel').addEventListener("click", () => {
+  toggleModal();
 
 document.querySelector('.restart').addEventListener("click", resetGame);
 });
 
 function resetGame() {
   resetTimer();
-  init();
-}
-
-function replayGame () {
-  toggleModal();
+  cardsDeck.innerHTML = ""; //delete deck
   init();
 }
 
 function resetTimer() {
-  var timer = document.querySelector(".timer");
-  timer.innerHTML = "0 mins 0 secs";
-  clearInterval(interval);
+var timer = document.querySelector(".timer");
+timer.innerHTML = "0 mins 0 secs";
+clearInterval(interval);
 }
 
 /* * *

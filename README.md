@@ -35,12 +35,13 @@ The game board consists of sixteen "cards" arranged in a grid. The deck is made 
 
 * [Yahya Elharony's Study Jam](https://www.youtube.com/watch?v=G8J13lmApkQ)
 * [Matthew Cranford's Tutorial](https://matthewcranford.com/category/blog-posts/walkthrough/memory-game/)
-* [Sandra Israel-Ovirih](https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript)
+* [Sandra Israel-Ovirih's Tutorial](https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript)
 
 ## Remaining Bugs
 
-* Replay button on modal
-* Match > Pop Up Modal > Hit Cancel > Hit Restart Button
-* Timer starts on 2nd move
-* Stars don't reset with game reset
-* (Help?) 
+* ~~Replay button on modal~~ Resolved: recreated logic used for restart button
+* ~~Match > Pop Up Modal > Hit Cancel > Hit Restart Button (a bug that previously duplicated the deck)~~ Resolved: delete the deck before calling it again
+* Timer starts on 2nd move. This is an issue that remains - attempting to move startTimer outside of addMove function and into the click event breaks the timer.
+* ~~Stars don't reset with game reset~~ Resolved: used location.reload() in reset/replay functions to solve
+* ~~Time modal not logging the correct number of moves or stars~~ lowered moves++ logic in addMove function and writeModalStats is now using $(".fa-star").length to count number of stars
+* Added media queries for deck, cards and font sizes
